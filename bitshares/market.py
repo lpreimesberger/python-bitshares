@@ -172,7 +172,10 @@ class Market(dict):
             base=self["base"],
             blockchain_instance=self.blockchain,
         )
-        data["percentChange"] = float(ticker["percent_change"])
+        try:
+            data["percentChange"] = float(ticker["percent_change"])
+        except ValueError:
+            data["percentChange"] = 0.0
 
         return data
 
